@@ -29,7 +29,6 @@ class BookMyShow(object):
                 break
             if remaining == 0:
                 break
-
             for idx, seat in enumerate(seats):
                 if seat == 0 and first_seat == None and self.__m - (idx + 1) >= k:
                     first_seat = idx
@@ -39,7 +38,6 @@ class BookMyShow(object):
                 elif seat == 0 and first_seat != None and idx <= (k - 1):
                     self.__booked[row][idx] = 1
                     remaining -= 1
-
         return result
         
 
@@ -57,21 +55,17 @@ class BookMyShow(object):
                 return True
 
             for idx, seat in enumerate(seats):
-                if seat == 0 and self.__m - (idx + 1) <= k:
-                    first_seat = idx
-                    result = [row, first_seat]
+                if seat == 0:
                     self.__booked[row][idx] = 1
                     remaining -= 1
-                elif seat == 0 and idx <= (k - 1):
-                    self.__booked[row][idx] = 1
-                    remaining -= 1
-
-        print(self.__booked, k, maxRow)
+                if remaining == 0:
+                    return True
         return False
         
 
 
 # Your BookMyShow object will be instantiated and called as such:
 obj = BookMyShow(2, 5)
-param_1 = obj.gather(4,0)
-print(param_1)
+param_1 = obj.scatter(5,1)
+param_2 = obj.scatter(5,1)
+print(param_2)
